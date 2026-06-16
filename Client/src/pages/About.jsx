@@ -66,7 +66,7 @@ const About = () => {
             with hands-on experience in MERN Stack and Angular through an
             internship and a traineeship. I enjoy turning design ideas into
             fast, real-world interfaces and clean APIs. I'm looking for a
-            Full-Stack Developer role where I can keep learning and ship things
+            Full-Stack Developer Intern role where I can keep learning and ship things
             that matter.
           </p>
           <div className="about__contact-links">

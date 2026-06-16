@@ -35,12 +35,33 @@ const Contact = () => {
   const handleChange = (e) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!form.name || !form.email || !form.message) return;
-    // Wire up to your preferred form service (e.g. Formspree, EmailJS)
-    setSent(true);
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!form.name || !form.email || !form.message) return;
+
+  try {
+    const res = await fetch("http://localhost:5000/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setSent(true);
+      setForm({ name: "", email: "", message: "" });
+    } else {
+      alert(data.message);
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong");
+  }
+};
 
   return (
     <section className="contact">
